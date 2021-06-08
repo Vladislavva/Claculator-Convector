@@ -2,7 +2,7 @@ window.addEventListener("load", function OnWindowLoaded() {
     const keyboard = document.querySelector(".keyboard");
     const conditions = document.querySelector(".condition");
     const result = document.querySelector(".result");
-
+    const timer = document.querySelector(".timer");
     const calculatorBtns = [
         1,
         2,
@@ -44,7 +44,14 @@ window.addEventListener("load", function OnWindowLoaded() {
             else if (btnValue === "=") {
                 let expression = conditions.textContent;
                 result.innerHTML = "";
+                var time = performance.now();
+       
                 expression = eval(expression);
+                time = performance.now() - time;
+                const value = document.createElement("p");
+                value.innerHTML ='Время выполнения = '+ time;
+                timer.appendChild(value);
+
 
                 if (expression === undefined) {
                     const expressionResult = document.createElement("p");
@@ -81,5 +88,7 @@ window.addEventListener("load", function OnWindowLoaded() {
                 }
             }
         };
+       
     });
+   
 });
